@@ -12,7 +12,7 @@ const { Header, Content, Footer } = Layout;
 
 function App() {
 
-  const [route, setRoute] = useState(null)
+  const [route, setRoute] = useState(null);
 
   return (
     <div className="App">
@@ -28,7 +28,7 @@ function App() {
         </Header>
         <Content style={{ padding: '0 50px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>{route?`${route}`:'Home'}</Breadcrumb.Item>
+            <Breadcrumb.Item>{ route ? `${route}` : 'Home'}</Breadcrumb.Item>
           </Breadcrumb>
           {!route &&
             <img src={logo} style={{width: 750}} className="logo" alt="logo" />
