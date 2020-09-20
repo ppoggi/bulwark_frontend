@@ -1,42 +1,65 @@
 import React, {useEffect, useState} from 'react';
-import {Row, Col} from "antd";
-import {DAYS_OF_WEEK, HAVDAY, JARSDAY, ELDERDAY, FLUGADAY, GREERSDAY} from "../../Constants";
+import {Row, Col, Radio} from "antd";
+import {DAYS_OF_WEEK, DAY, WEEK, MONTH, YEAR, DAY_COLUMN_WIDTH,
+  DEFAULT_COLUMN_WIDTH, MONTHS_IN_YEAR, DEFAULT_NUM_ROWS, MONTH_NUM_ROWS,
+  YEAR_NUM_ROWS} from "../../Constants";
+import Day from "./Day";
 
-
-/**
- *216 days/year
- * 12 months/year*
- * 18 days/month
- * 5 days/week
- * 24 hours/day
- */
-
-/**
- * 5 columns
- * 5 rows
- */
-
-/**
- * 0 = Havday
- * 1 = Jarsday
- * 2 = Elderday
- * 3 = Flugaday
- * 4 = Greersday
- */
-
+const currentDay = 0 //mock data
+const dayOfWeek = currentDay%5
 
 export default function(){
+
+    const [period, setPeriod] = useState(WEEK);
+    const [width, setWidth] = useState(DEFAULT_COLUMN_WIDTH);
+    const [numRows, setNumRows] = useState(DEFAULT_NUM_ROWS);
+    const [visibleDays, setVisibleDays] = useState(Object.keys(DAYS_OF_WEEK));
+
+    const radioOnChange = (e)=>{
+      const value = e.target.value
+      setPeriod(value)
+      switch (value){
+        case DAY:
+          setWidth(DAY_COLUMN_WIDTH)
+          setNumRows(DEFAULT_NUM_ROWS)
+          setVisibleDays([dayOfWeek])
+          break
+        case WEEK:
+          setWidth(DEFAULT_COLUMN_WIDTH)
+          setNumRows(DEFAULT_NUM_ROWS)
+          setVisibleDays(Object.keys(DAYS_OF_WEEK))
+          break
+        case MONTH:
+          setWidth(DEFAULT_COLUMN_WIDTH)
+          setNumRows(MONTH_NUM_ROWS)
+          setVisibleDays(Object.keys(DAYS_OF_WEEK))
+          break
+        case YEAR:
+          setWidth(DEFAULT_COLUMN_WIDTH)
+          setNumRows(YEAR_NUM_ROWS)
+          setVisibleDays(Object.keys(DAYS_OF_WEEK))
+          break
+      }
+    }
+
     return (
 
         <div>
             <Row>
-                <Col span={4}>{DAYS_OF_WEEK[HAVDAY]}</Col>
-                <Col span={4}>{DAYS_OF_WEEK[JARSDAY]}</Col>
-                <Col span={4}>{DAYS_OF_WEEK[ELDERDAY]}</Col>
-                <Col span={4}>{DAYS_OF_WEEK[FLUGADAY]}</Col>
-                <Col span={4}>{DAYS_OF_WEEK[GREERSDAY]}</Col>
+                <Col>
+                  <Radio.Group defaultValue={WEEK} buttonStyle="solid" onChange={radioOnChange}>
+                  <Radio.Button value={DAY}>Day</Radio.Button>
+                  <Radio.Button value={WEEK}>Week</Radio.Button>
+                  <Radio.Button value={MONTH}>Month</Radio.Button>
+                  <Radio.Button value={YEAR}>Year</Radio.Button>
+                  </Radio.Group>
+                </Col>
             </Row>
-
+            <Row>
+                {
+                  visibleDays.map((key)=><Day width={width} day={key}/>)
+                }
+            </Row>
         </div>
 
     )

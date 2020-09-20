@@ -21,4 +21,30 @@ export const DAYS_OF_WEEK = {
     4: 'Greersday',
 }
 
+export const MONTHS_IN_YEAR = {
+  0:'The Great Flood',
+  1:'Rain',
+  2:'Mud',
+  3:'Damp Havest',
+  4:'Grand Quake',
+  5:'Rupture',
+  6:'Kindling',
+  7:'The Great Burn',
+  8:'Fertilization',
+  9:'Dry Harvest',
+  10:'Squall',
+  11:'The Great Freeze',
+}
 
+
+export const DAY = "day";
+export const WEEK = "week";
+export const MONTH = "month";
+export const YEAR = "year";
+
+export const DAY_COLUMN_WIDTH = 24;
+export const DEFAULT_COLUMN_WIDTH = 4;
+
+export const DEFAULT_NUM_ROWS = 1;
+export const MONTH_NUM_ROWS = 5;
+export const YEAR_NUM_ROWS = 12;
