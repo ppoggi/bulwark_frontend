@@ -3,3 +3,4 @@ export const beardedMan = require('./bearded-idle-1.png');
 export const hatMan = require('./hat-man-idle-2.png');
 export const background = require('./background.png');
 export const fort = require('./fort.png');
+export const symbol = require('./symbol.png');
