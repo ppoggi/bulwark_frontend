@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {Row, Col} from "antd";
-import {DAYS_OF_WEEK, HAVDAY, JARSDAY, ELDERDAY, FLUGADAY, GREERSDAY} from "../../Constants";
+import React from 'react';
+import {Col} from "antd";
+import {DAYS_OF_WEEK} from "../../Constants";
 
 /**
  *216 days/year

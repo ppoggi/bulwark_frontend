@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Row, Col, Radio} from "antd";
 import {DAYS_OF_WEEK, DAY, WEEK, MONTH, YEAR, DAY_COLUMN_WIDTH,
-  DEFAULT_COLUMN_WIDTH, MONTHS_IN_YEAR, DEFAULT_NUM_ROWS, MONTH_NUM_ROWS,
+  DEFAULT_COLUMN_WIDTH, DEFAULT_NUM_ROWS, MONTH_NUM_ROWS,
   YEAR_NUM_ROWS} from "../../Constants";
 import Day from "./Day";
 
@@ -16,29 +16,33 @@ export default function(){
     const [visibleDays, setVisibleDays] = useState(Object.keys(DAYS_OF_WEEK));
 
     const radioOnChange = (e)=>{
-      const value = e.target.value
+
+        const value = e.target.value
       setPeriod(value)
-      switch (value){
+
+        switch (value){
         case DAY:
           setWidth(DAY_COLUMN_WIDTH)
           setNumRows(DEFAULT_NUM_ROWS)
           setVisibleDays([dayOfWeek])
-          break
+          break;
         case WEEK:
           setWidth(DEFAULT_COLUMN_WIDTH)
           setNumRows(DEFAULT_NUM_ROWS)
           setVisibleDays(Object.keys(DAYS_OF_WEEK))
-          break
+          break;
         case MONTH:
           setWidth(DEFAULT_COLUMN_WIDTH)
           setNumRows(MONTH_NUM_ROWS)
           setVisibleDays(Object.keys(DAYS_OF_WEEK))
-          break
+          break;
         case YEAR:
           setWidth(DEFAULT_COLUMN_WIDTH)
           setNumRows(YEAR_NUM_ROWS)
           setVisibleDays(Object.keys(DAYS_OF_WEEK))
-          break
+          break;
+      default:
+          break;
       }
     }
 

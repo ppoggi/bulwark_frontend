@@ -2,7 +2,6 @@ export const CALENDAR = 'CALENDAR';
 export const MODULES = 'MODULES';
 export const PIXI = 'PIXI';
 
-
 /**
  * Days of the week values
  */
@@ -19,8 +18,11 @@ export const DAYS_OF_WEEK = {
     2: 'Elderday',
     3: 'Flugaday',
     4: 'Greersday',
-}
+};
 
+/**
+ * Months values
+ */
 export const MONTHS_IN_YEAR = {
   0:'The Great Flood',
   1:'Rain',
@@ -34,13 +36,20 @@ export const MONTHS_IN_YEAR = {
   9:'Dry Harvest',
   10:'Squall',
   11:'The Great Freeze',
-}
+};
 
+/**
+ * Calendar Values
+ */
 
 export const DAY = "day";
 export const WEEK = "week";
 export const MONTH = "month";
 export const YEAR = "year";
+
+/**
+ * Width of an individual day item from the calendar. Single day takes up full row.
+ */
 
 export const DAY_COLUMN_WIDTH = 24;
 export const DEFAULT_COLUMN_WIDTH = 4;
