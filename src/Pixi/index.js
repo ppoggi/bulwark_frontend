@@ -1,19 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import * as PIXI from 'pixi.js';
-
 import {pixiContainerStyles} from "./Styles";
-import {beardedMan, paper, hatMan} from "../Images";
-
-
-const canvasWidth = 512;
-const canvasHeight = 512;
+import {background} from "../Images";
+import {Menu} from './Scenes';
+import {CANVAS_HEIGHT, CANVAS_WIDTH} from "../Constants";
 
 const pixiConfig = {
     antialias: true,
     transparent: false,
     resolution: 1,
-    height:canvasHeight,
-    width:canvasWidth,
+    height:CANVAS_HEIGHT,
+    width:CANVAS_WIDTH,
 };
 
 const pixiApp = new PIXI.Application(pixiConfig);
@@ -21,6 +18,7 @@ const pixiApp = new PIXI.Application(pixiConfig);
 export default function (props){
     const {setLoading, setLoadingProgress}= props;
     const [initialized, setInitialized] = useState(false);
+    const [currentScene, setCurrentScene] = useState(null);
 
     /**
      * Initialize Pixi
@@ -30,6 +28,7 @@ export default function (props){
 
             const pixiContainer = document.getElementById('pixi-container');
             pixiContainer.appendChild(pixiApp.view);
+
             setInitialized(true)
         }
     },[]);
@@ -43,7 +42,7 @@ export default function (props){
             /**
              * Add Assets
              */
-            pixiApp.loader.add([beardedMan, paper, hatMan]);
+            pixiApp.loader.add([background]);
             /**
              * Loading Progress
              */
@@ -65,35 +64,9 @@ export default function (props){
 
                 setLoading(false);
 
-                const width = canvasWidth;
-                const height = canvasHeight;
+                const menuScene = Menu(pixiApp);
 
-                const beardedManTexture = pixiApp.loader.resources[beardedMan].texture;
-                const paperTexture = pixiApp.loader.resources[paper].texture;
-                const hatManTexture = pixiApp.loader.resources[hatMan].texture;
-
-                let beardedManSprite = new PIXI.Sprite(beardedManTexture);
-                let paperSprite = new PIXI.Sprite(paperTexture);
-                let hatManSprite = new PIXI.Sprite(hatManTexture);
-
-                beardedManSprite.x = width * .8;
-                beardedManSprite.y = height * .7;
-
-                beardedManSprite.scale.x = 2;
-                beardedManSprite.scale.y = 2;
-
-                hatManSprite.x = width * .1;
-                hatManSprite.y = height * .7;
-
-                hatManSprite.width = hatManSprite.width * 2;
-                hatManSprite.height = hatManSprite.height * 2;
-
-                paperSprite.width = width;
-                paperSprite.height = height;
-
-                pixiApp.stage.addChild(paperSprite);
-                pixiApp.stage.addChild(beardedManSprite);
-                pixiApp.stage.addChild(hatManSprite);
+                pixiApp.stage.addChild(menuScene);
 
                 pixiApp.ticker.add(delta => gameLoop(delta));
 

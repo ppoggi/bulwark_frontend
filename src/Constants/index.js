@@ -57,3 +57,10 @@ export const DEFAULT_COLUMN_WIDTH = 4;
 export const DEFAULT_NUM_ROWS = 1;
 export const MONTH_NUM_ROWS = 5;
 export const YEAR_NUM_ROWS = 12;
+
+/**
+ * Canvas Constants
+ */
+
+export const CANVAS_WIDTH = 1024;
+export const CANVAS_HEIGHT = 512;
