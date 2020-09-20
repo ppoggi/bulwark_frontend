@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import * as PIXI from 'pixi.js';
 import {pixiContainerStyles} from "./Styles";
-import {background} from "../Images";
+import {fort} from "../Images";
 import {Menu} from './Scenes';
 import {CANVAS_HEIGHT, CANVAS_WIDTH} from "../Constants";
 
@@ -25,10 +25,8 @@ export default function (props){
      */
     useEffect(()=>{
         if(!initialized ){
-
             const pixiContainer = document.getElementById('pixi-container');
             pixiContainer.appendChild(pixiApp.view);
-
             setInitialized(true)
         }
     },[]);
@@ -42,20 +40,14 @@ export default function (props){
             /**
              * Add Assets
              */
-            pixiApp.loader.add([background]);
+            pixiApp.loader.add([fort]);
             /**
              * Loading Progress
              */
             pixiApp.loader.onProgress.add((loader, resource)=>{
-                //Display the file `url` currently being loaded
                 console.log("loading: " + resource.url);
-
-                //Display the percentage of files currently loaded
                 console.log("progress: " + loader.progress + "%");
                 setLoadingProgress(loader.progress)
-                //If you gave your files names as the first argument
-                //of the `add` method, you can access them like this
-                //console.log("loading: " + resource.name);
             });
             /**
              *Assets have been loaded
@@ -71,6 +63,7 @@ export default function (props){
                 pixiApp.ticker.add(delta => gameLoop(delta));
 
                 const gameLoop = (delta)=>{
+
                 };
             })
         }
